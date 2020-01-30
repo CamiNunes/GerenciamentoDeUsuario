@@ -11,10 +11,31 @@ class UserController{
         /*Marcar o radio button do genero ArrowFunction - Estudar mais depois*/
         this.formEl.addEventListener("submit", event => {
             event.preventDefault();
-
-            this.addLine(this.getValues());
+            let values = this.getValues();
+            values.photo = "";
+            this.getPhoto();
+            this.addLine(values);
         });
     }//Fechando onSubmit;
+
+    //Método
+    getPhoto(){
+        let fileReader = new fileReader();
+
+        let elements = [...this.formEl.elements].filter(item=>{
+            if(item.name === 'photo'){
+                return item;
+            }
+        });
+
+        console.log(elements);
+
+        fileReader.onload = ()=>{
+
+        };
+
+        fileReader.readAdDataURL();
+    }//Fechamentro getPhoto
 
     //Método
     getValues(){
