@@ -7,10 +7,14 @@ class UserController{
 
     //Método
     onSubmit(){
-    
         /*Marcar o radio button do genero ArrowFunction - Estudar mais depois*/
         this.formEl.addEventListener("submit", event => {
             event.preventDefault();
+
+            let btn = this.formEl.querySelector("[type=submit]");
+
+            btn.disabled = true;
+
             let values = this.getValues();
 
             //se deu certo, executa a primeira função...
@@ -19,6 +23,10 @@ class UserController{
                 (content)=>{
                     values.photo = content;
                     this.addLine(values);
+
+                    this.formEl.reset();
+
+                    btn.disabled = false;
                 }, // se não deu certo, executa a segunda função...
                 /* segunda função */
                 (e)=>{
